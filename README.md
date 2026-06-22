@@ -1,5 +1,3 @@
-A Lush Theme for Neovim.
+gild.nvim
 ===
-
-See: http://git.io/lush.nvim for more information on Lush and a helper script
-to setup your repo clone.
+A dark grayish theme with a yellow accent. Built with lush.nvim and the lush_template.
