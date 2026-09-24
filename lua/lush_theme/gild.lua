@@ -45,11 +45,27 @@
 local lush = require('lush')
 local hsl = lush.hsl
 
-local yellow0 = hsl('#eab464')
+local pink0 = hsl('#F92A82').desaturate(20)
+local pink1 = pink0.desaturate(20)
+local red0 = hsl('#D72638').desaturate(19)
+local orange0 = hsl('#DE6B48').saturate(20)
+local yellow0 = hsl('#eab464').saturate(20)
+-- local green0 = hsl('#DAEDBD').darken(10).saturate(50)
+-- local green1 = hsl('#355834')
+local green2 = hsl('#598B2C').desaturate(26).li(30)
+local blue0 = hsl('#3E92CC')
+local blue1 = hsl('#44CCFF').desaturate(1).darken(30)
+local blue2 = hsl('#75B9BE').saturate(20)
+local blue3 = hsl('#7DBBC3')
+
+local white0 = hsl('#FFFFFF')
+local white1 = white0.darken(30)
 local black = hsl('#000000')
 local gray0 = hsl('#B1B6A6')
 local gray1 = hsl('#819595')
 local gray2 = hsl('#C6B38E')
+local gray3 = gray2.darken(20)
+local gray4 = gray3.darken(30)
 
 local c1 = gray0
 local c2 = gray1
@@ -152,42 +168,59 @@ local theme = lush(function(injected_functions)
     --
     -- Uncomment and edit if you want more specific syntax highlighting.
 
-    Comment        { fg = c4 }, -- Any comment
+    Comment        { fg = gray4.darken(50) }, -- Any comment
 
-    Constant       { fg = c4 }, -- (*) Any constant
-    String         { fg = c3 }, --   A string constant: "this is a string"
+    -- Constant       { fg = hsl('#FFFFFF') }, -- (*) Any constant
+    -- Constant       { fg = red0 }, -- (*) Any constant
+    Constant       { fg = red0 }, -- (*) Any constant
+    -- Constant       { fg = orange0.desaturate(30) }, -- (*) Any constant
+    -- Constant       { fg = gray2 }, -- (*) Any constant
+    String         { fg = pink1 }, --   A string constant: "this is a string"
     -- Character      { }, --   A character constant: 'c', '\n'
-    -- Number         { }, --   A number constant: 234, 0xff
-    -- Boolean        { }, --   A boolean constant: TRUE, false
-    -- Float          { }, --   A floating point constant: 2.3e10
+    Number         { fg = yellow0 }, --   A number constant: 234, 0xff
+    Boolean        { fg = yellow0 }, --   A boolean constant: TRUE, false
+    Float          { fg = yellow0 }, --   A floating point constant: 2.3e10
 
-    Identifier     { fg = c1 }, -- (*) Any variable name
-    Function       { fg = c2 }, --   Function name (also: methods for classes)
-    -- Function       { fg = c4 }, --   Function name (also: methods for classes)
+    -- Identifier     { fg = c1 }, -- (*) Any variable name
+    Identifier     { fg = gray3 }, -- (*) Any variable name
+    -- Identifier     { fg = gray0 }, -- (*) Any variable name
+    -- Identifier     { fg = blue3 }, -- (*) Any variable name
+    -- Function       { fg = hsl('#FFFFFF')  }, --   Function name (also: methods for classes)
+    Function       { fg = orange0 }, --   Function name (also: methods for classes)
 
-    Statement      { fg = c4 }, -- (*) Any statement
+    -- Statement      { fg = white0.darken(44) }, -- (*) Any statement
+    Statement      { fg = pink1 }, -- (*) Any statement
+    -- Statement      { fg = gray2.lighten(60)  }, -- (*) Any statement
+    -- Statement      { fg = yellow0  }, -- (*) Any statement
+    -- Statement      { fg = pink0 }, -- (*) Any statement
+    -- Statement      { fg = gray0 }, -- (*) Any statement
     -- Conditional    { }, --   if, then, else, endif, switch, etc.
     -- Repeat         { }, --   for, do, while, etc.
     -- Label          { }, --   case, default, etc.
-    Operator       { fg = c3 }, --   "sizeof", "+", "*", etc.
+    Operator       { fg = gray2 }, --   "sizeof", "+", "*", etc.
     -- Keyword        { }, --   any other keyword
     -- Exception      { }, --   try, catch, throw
 
-    PreProc        { fg = c4 }, -- (*) Generic Preprocessor
+    PreProc        { fg = pink1 }, -- (*) Generic Preprocessor
     -- Include        { }, --   Preprocessor #include
     -- Define         { }, --   Preprocessor #define
-    -- Macro          { }, --   Same as Define
+    -- Macro          { fg= red0}, --   Same as Define
     -- PreCondit      { }, --   Preprocessor #if, #else, #endif, etc.
 
-    Type           { fg = c4 }, -- (*) int, long, char, etc.
+    Type           { fg = gray4 }, -- (*) int, long, char, etc.
+    -- Type           { fg = gray2 }, -- (*) int, long, char, etc.
+    -- Type           { fg = blue1.desaturate(20) }, -- (*) int, long, char, etc.
+    -- Type           { fg = blue1 }, -- (*) int, long, char, etc.
+    -- Type           { fg = gray0.desaturate(15).lighten(40) }, -- (*) int, long, char, etc.
     -- StorageClass   { }, --   static, register, volatile, etc.
     -- Structure      { }, --   struct, union, enum, etc.
     -- Typedef        { }, --   A typedef
 
-    Special        { fg = c3 }, -- (*) Any special symbol
+    -- Special        { fg = gray2 }, -- (*) Any special symbol
+    Special        { fg = orange0 }, -- (*) Any special symbol
     -- SpecialChar    { }, --   Special character in a constant
     -- Tag            { }, --   You can use CTRL-] on this
-    Delimiter      { fg = c2 }, --   Character that needs attention
+    Delimiter      { fg = gray2 }, --   Character that needs attention
     -- cBlock { fg = c3 },
     -- cParen { fg = c3 },
     -- SpecialComment { }, --   Special things inside a comment (e.g. '\n')
@@ -284,7 +317,6 @@ local theme = lush(function(injected_functions)
     -- sym"@parameter"         { }, -- Identifier
     -- sym"@method"            { }, -- Function
     -- sym"@field"             { }, -- Identifier
-    -- sym"@property"          { }, -- Identifier
     -- sym"@constructor"       { }, -- Special
     -- sym"@conditional"       { }, -- Conditional
     -- sym"@repeat"            { }, -- Repeat
@@ -292,7 +324,11 @@ local theme = lush(function(injected_functions)
     -- sym"@operator"          { }, -- Operator
     -- sym"@keyword"           { }, -- Keyword
     -- sym"@exception"         { }, -- Exception
-    sym"@variable"          { fg = c1 }, -- Identifier
+    sym"@variable"          { fg = gray3 }, -- Identifier
+    -- sym"@variable"          { fg = gray1 }, -- Identifier
+    -- sym"@property"          { fg = blue3.desaturate(13) }, -- Identifier
+    -- sym"@property"          { fg = gray0 }, -- Identifier
+    sym"@property"          { fg = blue1 }, -- Identifier
     -- sym"@type"              { }, -- Type
     -- sym"@type.definition"   { }, -- Typedef
     -- sym"@storageclass"      { }, -- StorageClass
